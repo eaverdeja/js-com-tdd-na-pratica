@@ -29,6 +29,7 @@ Por conta do arquivo `build.js`, o eslint acusou todo tipo de erro. Após uma pe
 A versão do webpack que foi instalada usando o comando `npm i --save-dev webpack` foi a `4.29.0`. Ao usar o comando `node_modules/.bin/webpack`, o pacote `webpack-cli` teve que ser instalado. Ou seja, o comando apropriado passou a ser `npm i --save-dev webpack webpack-cli`
 
 A instalação do NPM pegou uma vulnerabilidade alta e uma crítica, então eu usei o audit. Ao rodar `npm audit fix`, ele acusou um warning de semver por conta do `webpack-dev-server` e parou por ai. A cli sugeriu o comando `npm i -D webpack-dev-server@3.1.14`, alertando sobre os temidos **POTENTIALLY BREAKING CHANGES**
+
 <img src="https://media.giphy.com/media/NIVdosAtzETMQ/giphy.gif" width="130" height="130" />
 
 Instalei, apaguei os arquivos de build e rodei o webpack. Tudo sem problemas 🎊
