@@ -33,3 +33,27 @@ A instalação do NPM pegou uma vulnerabilidade alta e uma crítica, então eu u
 <img src="https://media.giphy.com/media/NIVdosAtzETMQ/giphy.gif" width="130" height="130" />
 
 Instalei, apaguei os arquivos de build e rodei o webpack. Tudo sem problemas 🎊
+
+### Tipos de Teste
+
+#### Pirâmide de Testes x Troféu de Testes
+
+Complementando a teoria passada pelo Willian, outra interpretação que está sendo popularizada é a do [Troféu de Testes, popularizada pelo Kent Dodds](https://testingjavascript.com/). Relembrando a pirâmide tradicional:
+
+<img src="https://cdn-images-1.medium.com/max/1200/0*UMzL89XZJ63vRCcc.png" width="400" />
+
+Testes unitários são mais rápidos e menos custosos. Testes de UI (E2E) são mais lentos e mais custosos. Outra métrica que não está presente no desenho mas que é de grande interesse é a *confiabilidade*. A medida que subimos na pirâmide, os testes nos garantem mais confiabilidade. Essa visão é traduzida no Trófeu de Testes:
+
+<img src="https://testingjavascript.com/static/trophyWithLabels@2x-3c2b593913ddfea970b801e67648092d.png" width="400"/>
+
+A medida que subimos no troféu, os testes nos garantem mais confiabilidade. Um único teste E2E pode cobrir boa parte dos casos que todo um conjunto de testes unitários cobre. No entanto, todo o conjunto de testes unitários pode ser mais caro de manter em comparação com um único teste E2E.
+
+Se o teste E2E nos der a *confiabilidade* que precisamos, pode ser mais interessante focar os esforços nessa camada. Sob essa ótica, a relação de custo-benefício se torna mais complexa e demanda uma análise caso a caso. Cada projeto é único!
+
+#### Static - A base da pirâmide
+
+O Kent Dodds adiciona a análise estática do código ao trófeu de testes com o argumento de que essa análise estática nos auxilia a lidar com erros **em tempo real**. Erros de escrita ou erros de tipo podem ser identificados pela IDE em tempo de desenvolvimento, evitando a necessidade de cobrir esses casos nos outros tipos de teste. Basta usarmos um linter (ESLint) e um sistema de tipos (Typescript ou Flow). Muita velocidade e pouco custo 🚀
+
+#### Testes de UI (E2E)
+
+O Willian comenta que as ferramentas mais populares para esse tipo de teste são o Selenium e o PhantomJS. Ambos são vistos como ferramentas lentas e de gerenciamento difícil. Recentemente, o CypressJS surgiu para auxiliar no desenvolvimento de testes E2E,aparentemente resolvendo os problemas mais comuns das ferramentas de testes E2E consolidadas no mercado. Vou tentar introduzir o Cypress ao final do curso 😄
