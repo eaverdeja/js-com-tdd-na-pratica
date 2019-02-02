@@ -1,4 +1,4 @@
-# JSS com TDD na prática - Willian Justens
+# JS com TDD na prática - Willian Justens
 
 Esse repositório foi criado para seguir o curso do Willian na Udemy. Esse readme serve para documentar meus aprendizados e para pontuar algumas mudanças necessárias pra tudo continuar funcionando conforme o curso prega
 
