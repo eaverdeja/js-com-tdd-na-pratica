@@ -1,9 +1,7 @@
 describe('Index', () => {
   describe('Method A', () => {
     context('Case 1', () => {
-      it('does something special', () => {
-        throw new Error('just an error')
-      })
+      it('does something special', () => false)
     })
 
     context('Case 2', () => {
