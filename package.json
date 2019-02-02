@@ -1,7 +1,7 @@
 {
   "name": "js-tdd-na-pratica",
   "version": "1.0.0",
-  "description": "Repositório criado para seguir o curso JSS com TDD na prática do Willian Justens",
+  "description": "Repositório criado para seguir o curso JS com TDD na prática do Willian Justens",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/eaverdeja/jss-com-tdd-na-pratica.git"
+    "url": "git+ssh://git@github.com/eaverdeja/js-com-tdd-na-pratica.git"
   },
   "keywords": [
     "js",
@@ -24,9 +24,9 @@
   "author": "Eduardo Verdeja <eaverdeja@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eaverdeja/jss-com-tdd-na-pratica/issues"
+    "url": "https://github.com/eaverdeja/js-com-tdd-na-pratica/issues"
   },
-  "homepage": "https://github.com/eaverdeja/jss-com-tdd-na-pratica#readme",
+  "homepage": "https://github.com/eaverdeja/js-com-tdd-na-pratica#readme",
   "devDependencies": {
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
