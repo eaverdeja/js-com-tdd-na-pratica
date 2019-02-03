@@ -4,7 +4,12 @@
 import { union as juntaTudo, uniq as soOsMesmos } from 'ramda'
 
 import soma, {
-  sub, multiplicacao, div as dividir, PI,
+  sub,
+  multiplicacao,
+  div as dividir,
+  PI,
+  almostExp as exp,
+  almostLog as log,
 } from './utils'
 
 const arr1 = [1, 1, 1, 2, 2, 3, 4, 5, 6, 6]
@@ -27,3 +32,7 @@ console.log(multiplicacao(7, 2))
 console.log(dividir(4, 2))
 
 console.log(PI)
+
+console.log(log(8, 2))
+
+console.log(exp(5, 1.2))
