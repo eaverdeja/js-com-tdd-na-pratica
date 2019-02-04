@@ -3,6 +3,12 @@
 // as => alias para o método (novo nome)
 import { union as juntaTudo, uniq as soOsMesmos } from 'ramda'
 
+// eslint-disable-next-line no-unused-vars
+import React from 'react'
+
+// eslint-disable-next-line no-unused-vars
+import ReactDOM from 'react-dom'
+
 import soma, {
   sub,
   multiplicacao,
