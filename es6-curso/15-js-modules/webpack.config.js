@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 const webpack = require('webpack')
 
-// eslint-disable-next-line no-unused-vars
 const nodeENV = process.env.NODE_ENV || 'production'
 
 module.exports = {
@@ -30,8 +29,8 @@ module.exports = {
       output: { comments: false },
       // sourceMap: true,
     }),
-    /* new webpack.DefinePlugin({
+    new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeENV) },
-    }), */
+    }),
   ],
 }
