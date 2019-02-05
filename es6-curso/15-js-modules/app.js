@@ -41,4 +41,4 @@ console.log(PI)
 
 console.log(log(8, 2))
 
-console.log(exp(5, 1.2))
+console.log(exp(5, 1))

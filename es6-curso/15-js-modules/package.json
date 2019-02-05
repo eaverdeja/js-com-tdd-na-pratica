@@ -12,10 +12,12 @@
   "author": "Willian Justen <willianjustenqui@gmail.com> (https://willianjusten.com.br/)",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
-    "babel-preset-es2015-native-modules": "^6.9.4",
-    "webpack": "^2.2.0-rc.2",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.29.1",
+    "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {

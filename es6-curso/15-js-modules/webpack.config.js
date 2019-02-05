@@ -1,9 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const nodeENV = process.env.NODE_ENV || 'production'
 
 module.exports = {
+  mode: nodeENV,
   devtool: 'source-map',
   entry: {
     filename: './app.js',
@@ -12,25 +14,25 @@ module.exports = {
     filename: './build.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: [['es2015', { modules: false }]],
+        use: {
+          loader: 'babel-loader',
         },
       },
     ],
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false },
-      output: { comments: false },
-      sourceMap: true,
-    }),
-    new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: JSON.stringify(nodeENV) },
-    }),
-  ],
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: { warnings: false },
+          output: { comments: false },
+        },
+        sourceMap: true,
+      }),
+    ],
+  },
 }
