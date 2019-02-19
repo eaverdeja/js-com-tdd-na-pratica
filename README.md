@@ -34,6 +34,16 @@ A instalação do NPM pegou uma vulnerabilidade alta e uma crítica, então eu u
 
 Instalei, apaguei os arquivos de build e rodei o webpack. Tudo sem problemas 🎊
 
+### **Webpack 4**
+
+O Webpack na versão 4 não necessita de configuração para as opções mais básicas:
+
+- Entrypoint (arquivo de entrada) ~> Procura por um arquivo `src/index.js`
+- Output (arquivo de saída) ~> Cria um arquivo `dist/main.js`
+- Ambiente (dev, production etc.) ~> Basta passar uma opção `--mode development` ou `--mode production` ao chamar o webpack
+
+Para usar o webpack-dev-server, só adicionar a opção `--mode` 😄
+
 ### Tipos de Teste
 
 #### Pirâmide de Testes x Troféu de Testes
