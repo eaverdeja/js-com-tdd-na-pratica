@@ -1,25 +1,21 @@
 describe('Index', () => {
-  before(() => {
-    console.log('before')
-  })
-
-  after(() => {
-    console.log('after')
-  })
+  let arr
 
   beforeEach(() => {
-    console.log('\tbeforeEach')
+    arr = [1, 2, 3]
   })
 
-  afterEach(() => {
-    console.log('\tafterEach')
+  it('should have a size of 4 when we push a value into the array', () => {
+    arr.push(4)
+    console.log(arr.length)
   })
 
-  it('is the first test', () => {
-    console.log('\t  first test!')
+  it('should retrieve the value 3 from the array if we pop it', () => {
+    console.log(arr.pop() === 3)
   })
 
-  it('is the second test', () => {
-    console.log('\t  second test!')
+  it('should have a size of 2 when we pop a value from the array', () => {
+    arr.pop()
+    console.log(arr.length)
   })
 })
