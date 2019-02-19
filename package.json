@@ -4,10 +4,8 @@
   "description": "Repositório criado para seguir o curso JS com TDD na prática do Willian Justens",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha tests/**/*.spec.js",
-    "lint": "./node_modules/.bin/eslint src/*.js",
-    "build": "./node_modules/.bin/webpack --progress",
-    "watch": "npm run build -- --watch"
+    "test": "mocha tests/**/*.spec.js",
+    "lint": "eslint src/*.js"
   },
   "husky": {
     "hooks": {
