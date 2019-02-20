@@ -10,12 +10,12 @@ describe('Calc', () => {
         {
           num1: 2,
           num2: 2,
-          expect: 4,
+          expectation: 4,
         },
         {
           num1: 2,
           num2: -1,
-          expect: 1,
+          expectation: 1,
         },
       ],
     },
@@ -25,12 +25,12 @@ describe('Calc', () => {
         {
           num1: 2,
           num2: 2,
-          expect: 0,
+          expectation: 0,
         },
         {
           num1: 2,
           num2: -1,
-          expect: 3,
+          expectation: 3,
         },
       ],
     },
@@ -40,12 +40,12 @@ describe('Calc', () => {
         {
           num1: 2,
           num2: 2,
-          expect: 4,
+          expectation: 4,
         },
         {
           num1: 3,
           num2: 3,
-          expect: 9,
+          expectation: 9,
         },
       ],
     },
@@ -55,12 +55,12 @@ describe('Calc', () => {
         {
           num1: 2,
           num2: 2,
-          expect: 1,
+          expectation: 1,
         },
         {
           num1: 12,
           num2: 3,
-          expect: 4,
+          expectation: 4,
         },
       ],
     },
@@ -70,22 +70,20 @@ describe('Calc', () => {
     it("should assert the calc lib's existence", () => {
       expect(calc).to.exist
     })
-    calcMethods.forEach((method) => {
-      it(`should have a ${method.name} method`, () => {
-        expect(calc[method.name]).to.exist
-        expect(calc[method.name]).to.be.a('function')
+    calcMethods.forEach(({name}) => {
+      it(`should have a ${name} method`, () => {
+        expect(calc[name]).to.exist
+        expect(calc[name]).to.be.a('function')
       })
     })
   })
 
   describe('Calc Methods', () => {
-    calcMethods.forEach((method) => {
-      method.tests.forEach((test) => {
-        it(`should return ${test.expect} when \`${method.name}(${test.num1},${
-          test.num2
-        })\``, () => {
-          const result = calc[method.name](test.num1, test.num2)
-          expect(result).to.be.equal(test.expect)
+    calcMethods.forEach(({name, tests}) => {
+      tests.forEach(({num1, num2, expectation}) => {
+        it(`should return ${expectation} when \`${name}(${num1},${num2})\``, () => {
+          const result = calc[name](num1, num2)
+          expect(result).to.be.equal(expectation)
         })
       })
     })
