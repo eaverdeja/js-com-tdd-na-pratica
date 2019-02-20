@@ -67,3 +67,9 @@ O Kent Dodds adiciona a análise estática do código ao trófeu de testes com o
 #### Testes de UI (E2E)
 
 O Willian comenta que as ferramentas mais populares para esse tipo de teste são o Selenium e o PhantomJS. Ambos são vistos como ferramentas lentas e de gerenciamento difícil. Recentemente, o CypressJS surgiu para auxiliar no desenvolvimento de testes E2E,aparentemente resolvendo os problemas mais comuns das ferramentas de testes E2E consolidadas no mercado. Vou tentar introduzir o Cypress ao final do curso 😄
+
+## Testes unitários
+
+A brincadeira começou com a criação de testes unitários para uma calculadora fictícia, usando o Mocha como test runner e o Chai para assertivas.
+
+Como eu já tinha visto algumas coisas sobre eles, aproveitei para brincar um pouco e consolidar o conhecimento. Parametrizei os testes, [inspirado pela documentação do Mocha](https://mochajs.org/#dynamically-generating-tests), para evitar a repetição de blocos describe/it similares. [Achei interessante](https://github.com/eaverdeja/js-com-tdd-na-pratica/commit/4e6418ef066ed612943c2fee4e0548da16a9862d), mas senti que feriu a legibilidade dos testes ([o destructuring ajudou!](https://github.com/eaverdeja/js-com-tdd-na-pratica/commit/f13323c27832f32aebd96a88e33b4d59623b6540))
