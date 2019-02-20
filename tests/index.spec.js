@@ -1,6 +1,6 @@
-const expect = require('chai').expect
+import {expect} from 'chai'
 
-const calc = require('../src/index')
+import calc from '../src/index'
 
 describe('Calc', () => {
   const calcMethods = [
