@@ -62,7 +62,7 @@ Se o teste E2E nos der a *confiabilidade* que precisamos, pode ser mais interess
 
 #### Static - A base da pirâmide
 
-O Kent Dodds adiciona a análise estática do código ao trófeu de testes com o argumento de que essa análise estática nos auxilia a lidar com erros **em tempo real**. Erros de escrita ou erros de tipo podem ser identificados pela IDE em tempo de desenvolvimento, evitando a necessidade de cobrir esses casos nos outros tipos de teste. Basta usarmos um linter (ESLint) e um sistema de tipos (Typescript ou Flow). Muita velocidade e pouco custo 🚀
+O Kent Dodds adiciona a análise estática do código ao trófeu de testes com o argumento de que essa análise estática nos auxilia a lidar com erros **em tempo real**. Erros de escrita ou erros de tipo podem ser identificados pela IDE em tempo de desenvolvimento, evitando a necessidade de cobrir esses casos nos outros tipos de teste. Basta usarmos um linter (ESLint) e um sistema de tipos (Typescript ou Flow). Muita velocidade e pouco custo 🚀 (linters são menos custosos, enquanto que a adoção de um sistema de tipos pode ser mais difícil)
 
 #### Testes de UI (E2E)
 
