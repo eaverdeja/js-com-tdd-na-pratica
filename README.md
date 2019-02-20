@@ -56,7 +56,7 @@ Testes unitários são mais rápidos e menos custosos. Testes de UI (E2E) são m
 
 <img src="https://testingjavascript.com/static/trophyWithLabels@2x-3c2b593913ddfea970b801e67648092d.png" width="400"/>
 
-A medida que subimos no troféu, os testes nos garantem mais confiabilidade. Um único teste E2E pode cobrir boa parte dos casos que todo um conjunto de testes unitários cobre. No entanto, todo o conjunto de testes unitários pode ser mais caro de manter em comparação com um único teste E2E.
+Um único teste E2E pode cobrir boa parte dos casos que todo um conjunto de testes unitários cobre. No entanto, todo o conjunto de testes unitários pode ser mais caro de manter em comparação com um único teste E2E.
 
 Se o teste E2E nos der a *confiabilidade* que precisamos, pode ser mais interessante focar os esforços nessa camada. Sob essa ótica, a relação de custo-benefício se torna mais complexa e demanda uma análise caso a caso. Cada projeto é único!
 
