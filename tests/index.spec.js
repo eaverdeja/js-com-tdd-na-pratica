@@ -62,6 +62,11 @@ describe('Calc', () => {
           num2: 3,
           expectation: 4,
         },
+        {
+          num1: 3,
+          num2: 0,
+          expectation: 'Não é possível dividir por zero!',
+        },
       ],
     },
   ]
