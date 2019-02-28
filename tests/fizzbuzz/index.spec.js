@@ -21,5 +21,6 @@ describe('FizzBuzz', () => {
   it('Deve retornar o próprio número caso ele não seja divisível por 3 e 5', () => {
     expect(fizzBuzz(4)).to.equal(4)
     expect(fizzBuzz(71)).to.equal(71)
+    expect(fizzBuzz(0)).to.equal(0)
   })
 })
