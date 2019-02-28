@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 
-import calc from '../src/index'
+import calc from '../../src/calculator/index'
 
 describe('Calc', () => {
   const calcMethods = [
