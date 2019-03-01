@@ -72,21 +72,21 @@ describe('Calc', () => {
   ]
 
   describe('Smoke Tests', () => {
-    it("should assert the calc lib's existence", () => {
+    it('Deve afirmar a existência da lib calc', () => {
       expect(calc).to.exist
     })
     calcMethods.forEach(({name}) => {
-      it(`should have a ${name} method`, () => {
+      it(`Deve ter um método ${name}()`, () => {
         expect(calc[name]).to.exist
         expect(calc[name]).to.be.a('function')
       })
     })
   })
 
-  describe('Calc Methods', () => {
+  describe('Métodos da calc', () => {
     calcMethods.forEach(({name, tests}) => {
       tests.forEach(({num1, num2, expectation}) => {
-        it(`should return ${expectation} when \`${name}(${num1},${num2})\``, () => {
+        it(`Deve retornar ${expectation} quando \`${name}(${num1},${num2})\``, () => {
           const result = calc[name](num1, num2)
           expect(result).to.be.equal(expectation)
         })
