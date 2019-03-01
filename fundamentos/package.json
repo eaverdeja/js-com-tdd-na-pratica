@@ -1,0 +1,51 @@
+{
+  "name": "js-tdd-na-pratica",
+  "version": "1.0.0",
+  "description": "Repositório criado para seguir o curso JS com TDD na prática do Willian Justens",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests/**/*.spec.js --require babel-register",
+    "test:tdd": "npm test -- --watch",
+    "test:coverage": "nyc npm test",
+    "lint": "eslint src/**/*.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm test",
+      "pre-push": "npm run lint && npm run test:coverage"
+    }
+  },
+  "nyc": {
+    "check-coverage": true,
+    "functions": 80,
+    "lines": 80,
+    "reporter": ["text", "html"],
+    "exclude": ["tests/**"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/eaverdeja/js-com-tdd-na-pratica.git"
+  },
+  "keywords": [
+    "js",
+    "tdd",
+    "wilian-justens"
+  ],
+  "author": "Eduardo Verdeja <eaverdeja@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eaverdeja/js-com-tdd-na-pratica/issues"
+  },
+  "homepage": "https://github.com/eaverdeja/js-com-tdd-na-pratica#readme",
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "husky": "^1.3.1",
+    "mocha": "^5.2.0",
+    "nyc": "^13.3.0"
+  }
+}
