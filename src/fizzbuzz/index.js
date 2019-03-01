@@ -9,8 +9,3 @@ export default (num) => {
 
   return num
 }
-
-export const waaat = () => {
-  const wow = 'WOOOWWW'
-  return wow
-}
