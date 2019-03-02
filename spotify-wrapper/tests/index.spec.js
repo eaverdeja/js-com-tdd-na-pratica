@@ -87,8 +87,8 @@ describe('Spotify Wrapper', () => {
 
     it('Deve retornar os dados em JSON', async () => {
       fetchStub.resolves(mockPromise({ body: 'json' }))
-      const artist = await search('King Crimson', 'artist')
-      expect(artist).to.eql({ body: 'json' })
+      const artists = await search('King Crimson', 'artist')
+      expect(artists).to.eql({ body: 'json' })
     })
   })
 
