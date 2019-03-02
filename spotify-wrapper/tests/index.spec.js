@@ -17,7 +17,7 @@ chai.use(sinonChai)
 sinonStubPromise(sinon)
 let fetchStub
 
-before(() => {
+beforeEach(() => {
   fetchStub = sinon.stub(global, 'fetch')
 })
 
@@ -52,7 +52,14 @@ describe('Spotify Wrapper', () => {
       const artists = search()
 
       expect(fetchStub).to.have.been.calledOnce
-      expect(fetchStub).to.have.been.calledWith('https://spotify.com')
+    })
+
+    it('Deve utilizar a URL correta ao buscar', () => {
+      const artists = search('King Crimson', 'artist')
+
+      expect(fetchStub).to.have.been.calledWith(
+        'https://api.spotify.com/v1/search?q=King%20Crimson&type=artist',
+      )
     })
   })
 })
