@@ -1,7 +1,6 @@
 import chai, {expect} from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-import sinonStubPromise from 'sinon-stub-promise'
 
 import {
   search,
@@ -14,11 +13,13 @@ import {
 global.fetch = require('node-fetch')
 
 chai.use(sinonChai)
-sinonStubPromise(sinon)
 let fetchStub
+const mockPromise = returns => ({
+  json: res => returns || res,
+})
 
 beforeEach(() => {
-  fetchStub = sinon.stub(global, 'fetch')
+  fetchStub = sinon.stub(global, 'fetch').resolves(mockPromise())
 })
 
 afterEach(() => {
@@ -50,16 +51,36 @@ describe('Spotify Wrapper', () => {
   describe('Busca genêrica', () => {
     it('Deve chamar o método search()', () => {
       const artists = search()
-
       expect(fetchStub).to.have.been.calledOnce
     })
 
-    it('Deve utilizar a URL correta ao buscar', () => {
-      const artists = search('King Crimson', 'artist')
+    context('Passando apenas um tipo', () => {
+      it('Deve utilizar a URL correta ao buscar', () => {
+        const artist = search('King Crimson', 'artist')
+        expect(fetchStub).to.have.been.calledWith(
+          'https://api.spotify.com/v1/search?q=King%20Crimson&type=artist',
+        )
 
-      expect(fetchStub).to.have.been.calledWith(
-        'https://api.spotify.com/v1/search?q=King%20Crimson&type=artist',
-      )
+        const albums = search('King Crimson', 'album')
+        expect(fetchStub).to.have.been.calledWith(
+          'https://api.spotify.com/v1/search?q=King%20Crimson&type=album',
+        )
+      })
+    })
+
+    context('Passando mais de um tipo', () => {
+      it('Consegue buscar por artista e album ao mesmo tempo', () => {
+        const artistAndAlbums = search('King Crimson', ['artist', 'album'])
+        expect(fetchStub).to.have.been.calledWith(
+          'https://api.spotify.com/v1/search?q=King%20Crimson&type=artist,album',
+        )
+      })
+    })
+
+    it('Deve retornar os dados em JSON', async () => {
+      fetchStub.resolves(mockPromise({body: 'json'}))
+      const artist = await search('King Crimson', 'artist')
+      expect(artist).to.eql({body: 'json'})
     })
   })
 })
