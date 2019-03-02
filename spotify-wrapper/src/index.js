@@ -1,0 +1,5 @@
+export const search = () => ({})
+export const searchByArtist = () => ({})
+export const searchByAlbums = () => ({})
+export const searchByTracks = () => ({})
+export const searchByPlaylists = () => ({})
