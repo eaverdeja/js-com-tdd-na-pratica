@@ -72,7 +72,7 @@ A brincadeira começou com a criação de testes unitários para uma calculadora
 
 Como eu já tinha visto algumas coisas sobre eles, aproveitei para brincar um pouco e consolidar o conhecimento. Parametrizei os testes, [inspirado pela documentação do Mocha](https://mochajs.org/#dynamically-generating-tests), para evitar a repetição de blocos describe/it similares. [Achei interessante](https://github.com/eaverdeja/js-com-tdd-na-pratica/commit/4e6418ef066ed612943c2fee4e0548da16a9862d), mas senti que feriu a legibilidade dos testes ([o destructuring ajudou!](https://github.com/eaverdeja/js-com-tdd-na-pratica/commit/f13323c27832f32aebd96a88e33b4d59623b6540))
 
-## Sinon
+## Sinon - Stubs!
 
 Utilizando o Sinon com os pacotes nas versões abaixo, o método `stub.returnsPromise()` acusou que `returnsPromise()` vindo do `sinon-stub-promise` não é uma função. Usei o método `resolves()` do próprio Sinon e deu tudo certo 👍
 
@@ -88,36 +88,26 @@ Ou seja, a biblioteca `sinon-stub-promise` [não é mais necessária](https://gi
 // index.spec.js
 
 const mockPromise = returns => ({
+  // Mockamos o método json(), usado no index.js
   json: res => returns || res,
 })
 
 beforeEach(() => {
-  fetchStub = sinon.stub(global, 'fetch').resolves(mockPromise())
+  // Indicamos para o Sinon como a promise deve ser resolvida.
+  // Dessa forma, os demais testes podem usar o método `search()`
+  // certos de que o fetch mockado irá retornar
+  // um objeto com um método `json()`
+  fetchStub = sinon.stub(global, 'fetch')
+    .resolves(mockPromise())
 })
 
 ...
 
 it('Deve retornar os dados em JSON', async () => {
-  fetchStub.resolves(mockPromise({body: 'json'}))
+  fetchStub.resolves(mockPromise({ body: 'json' }))
   const artist = await search('King Crimson', 'artist')
-  expect(artist).to.eql({body: 'json'})
+  expect(artist).to.eql({ body: 'json' })
 })
-
-// index.js
-const BASE_URL = 'https://api.spotify.com/v1'
-
-export const search = async (query, type) => {
-  const url = query && type ? encodeURI(`${BASE_URL}/search?q=${query}&type=${type}`) : BASE_URL
-
-  try {
-    const res = await fetch(url)
-    return await res.json()
-  } catch (ex) {
-    console.log(ex)
-  }
-
-  return undefined
-}
 ```
 
 ### Tratamento de erros assíncronos
@@ -132,7 +122,7 @@ A solução final ficou assim:
 
 ```js
 // index.spec.js
-(...)
+...
 
 // Devemos utilizar uma função assíncrona com a palavra chave `async`
 it('Deve delegar possíveis exceções no método search()', async () => {
@@ -145,10 +135,10 @@ it('Deve delegar possíveis exceções no método search()', async () => {
 })
 
 // index.js
-(...)
+...
 
 export const search = async (query, type) => {
-  (...)
+  ...
 
   try {
     const res = await fetch(url)
