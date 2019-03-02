@@ -4,7 +4,7 @@
   "description": "Repositório criado para seguir o curso JS com TDD na prática do Willian Justens",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/**/*.spec.js --require babel-register",
+    "test": "mocha tests/**/*.spec.js --require @babel/register",
     "test:tdd": "npm test -- --watch",
     "test:coverage": "nyc npm test",
     "lint": "eslint src/**/*.js"
@@ -43,8 +43,9 @@
   },
   "homepage": "https://github.com/eaverdeja/js-com-tdd-na-pratica#readme",
   "devDependencies": {
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/register": "^7.0.0",
     "chai": "^4.2.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
