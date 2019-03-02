@@ -22,8 +22,6 @@ Eu clonei o [código do curso de es6](https://github.com/willianjusten/es6-curso
 
 <img src="https://media.giphy.com/media/13EjnL7RwHmA2Q/giphy.gif" width="130" height="130" />
 
-
-
 Por conta do arquivo `build.js`, o eslint acusou todo tipo de erro. Após uma pesquisa rápida, descobri que [basta criar um arquivo `.eslintignore`](https://eslint.org/docs/user-guide/configuring.html#ignoring-files-and-directories) na raiz do projeto e adicionar os arquivos apropriados - igualzinho ao bom e velho `.gitignore`
 
 A versão do webpack que foi instalada usando o comando `npm i --save-dev webpack` foi a `4.29.0`. Ao usar o comando `node_modules/.bin/webpack`, o pacote `webpack-cli` teve que ser instalado. Ou seja, o comando apropriado passou a ser `npm i --save-dev webpack webpack-cli`
@@ -38,9 +36,9 @@ Instalei, apaguei os arquivos de build e rodei o webpack. Tudo sem problemas �
 
 O Webpack na versão 4 não necessita de configuração para as opções mais básicas:
 
-- Entrypoint (arquivo de entrada) ~> Procura por um arquivo `src/index.js`
-- Output (arquivo de saída) ~> Cria um arquivo `dist/main.js`
-- Ambiente (dev, production etc.) ~> Basta passar uma opção `--mode development` ou `--mode production` ao chamar o webpack
+-   Entrypoint (arquivo de entrada) ~> Procura por um arquivo `src/index.js`
+-   Output (arquivo de saída) ~> Cria um arquivo `dist/main.js`
+-   Ambiente (dev, production etc.) ~> Basta passar uma opção `--mode development` ou `--mode production` ao chamar o webpack
 
 Para usar o webpack-dev-server, só adicionar a opção `--mode` 😄
 
@@ -52,13 +50,13 @@ Complementando a teoria passada pelo Willian, outra interpretação que está se
 
 <img src="https://cdn-images-1.medium.com/max/1200/0*UMzL89XZJ63vRCcc.png" width="400" />
 
-Testes unitários são mais rápidos e menos custosos. Testes de UI (E2E) são mais lentos e mais custosos. Outra métrica que não está presente no desenho mas que é de grande interesse é a *confiabilidade*. A medida que subimos na pirâmide, os testes nos garantem mais confiabilidade. Essa visão é traduzida no Trófeu de Testes:
+Testes unitários são mais rápidos e menos custosos. Testes de UI (E2E) são mais lentos e mais custosos. Outra métrica que não está presente no desenho mas que é de grande interesse é a _confiabilidade_. A medida que subimos na pirâmide, os testes nos garantem mais confiabilidade. Essa visão é traduzida no Trófeu de Testes:
 
 <img src="https://testingjavascript.com/static/trophyWithLabels@2x-3c2b593913ddfea970b801e67648092d.png" width="400"/>
 
 Um único teste E2E pode cobrir boa parte dos casos que todo um conjunto de testes unitários cobre. No entanto, todo o conjunto de testes unitários pode ser mais caro de manter em comparação com um único teste E2E.
 
-Se o teste E2E nos der a *confiabilidade* que precisamos, pode ser mais interessante focar os esforços nessa camada. Sob essa ótica, a relação de custo-benefício se torna mais complexa e demanda uma análise caso a caso. Cada projeto é único!
+Se o teste E2E nos der a _confiabilidade_ que precisamos, pode ser mais interessante focar os esforços nessa camada. Sob essa ótica, a relação de custo-benefício se torna mais complexa e demanda uma análise caso a caso. Cada projeto é único!
 
 #### Static - A base da pirâmide
 
@@ -119,5 +117,45 @@ export const search = async (query, type) => {
   }
 
   return undefined
+}
+```
+
+### Tratamento de erros assíncronos
+
+Como exercício, quis atingir 100% de cobertura nos testes, e o nyc estava me avisando de que o bloco `catch` do método `search()` não estava sendo testado. Depois de fuçar um pouco pelo Google consegui montar uma solução que achei legal. Optei pelo uso do `async/await` por três motivos:
+
+- Praticidade: funcionou!
+- Legibilidade: Não precisamos de `new Promise((...) => {...})`)
+- Não precisei instalar dependências ou plugins adicionais 
+
+A solução final ficou assim:
+
+```js
+// index.spec.js
+(...)
+
+// Devemos utilizar uma função assíncrona com a palavra chave `async`
+it('Deve delegar possíveis exceções no método search()', async () => {
+  // Indicamos para o Sinon que a promise deve ser rejeitada
+  fetchStub.rejects({ error: 'Mock! 😈' })
+  // Usamos o await para aguardar a resolução da promise
+  const result = await search('Kenny G', 'artist')
+  // Realizamos a assertiva
+  expect(result).to.equal('Algo de errado ocorreu! 💥')
+})
+
+// index.js
+(...)
+
+export const search = async (query, type) => {
+  (...)
+
+  try {
+    const res = await fetch(url)
+    return await res.json()
+  } catch (error) {
+    console.log(error)
+    return 'Algo de errado ocorreu! 💥'
+  }
 }
 ```
