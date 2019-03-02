@@ -149,3 +149,22 @@ export const search = async (query, type) => {
   }
 }
 ```
+
+## API do Spotify
+
+O Spotify passou a exigir um token de autorização no cabeçalho das requisições à API. A resposta para requisições sem um header `Authorization: Bearer ...` passou a ser: 
+
+```json
+{ error: { status: 401, message: 'No token provided' } }
+```
+
+Portanto, precisei seguir o passo a passo do Spotify, autenticando com minha conta pessoal e obtendo um token, para na sequência alterar o código do método `search()`. Para guardar o token em uma variável de ambiente, usei o `dotenv`:
+
+```js
+const res = await fetch(url, {
+  headers: {
+    Authorization: `Bearer ${process.env.SPOTIFY_API_KEY}`,
+  },
+})
+```
+
